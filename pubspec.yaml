@@ -1,0 +1,8 @@
+name: groupobject
+version: 0.0.1
+author: Alexander Ewetumo <trinoxf@gmail.com>
+description: providing a generic object pool
+homepage: http://github.com/influx6/groupObject.dart
+dependencies:
+  hub: any
+  ds: any
