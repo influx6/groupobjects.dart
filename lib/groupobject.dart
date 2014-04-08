@@ -4,13 +4,13 @@ import 'package:hub/hub.dart';
 import 'package:ds/ds.dart';
 
 abstract class GroupObject extends MapDecorator{
-	Groups owner;
+	Groups groupOwner;
 
-	GroupObject(this.owner);
+	GroupObject(this.groupOwner);
 
 	void init();
 	void free(){
-		this.owner.free(this);
+		this.groupOwner.free(this);
 		this.flush();
 	}
 }
@@ -51,7 +51,17 @@ class Groups{
 		var node = this.lockedit.remove(n);
 		this.freed.add(node.data);
 	}
+  
+  void flush(){
+    this.freed.free();
+    this.locked.free();
+  }
 
+  void close(){
+    this.flush();
+    this.freedit.detonate();
+    this.lockedit.detonate();
+  }
 }
 
 
